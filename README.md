@@ -10,8 +10,6 @@
 ![IDE](https://img.shields.io/badge/IDE-S32%20Design%20Studio-green?style=flat-square)
 ![License](https://img.shields.io/badge/License-BSD--3--Clause%20(partial)-lightgrey?style=flat-square)
 
-<sub>2022 마이크로프로세서 텀프로젝트 · 12조 (고경빈, 우희연)</sub>
-
 </div>
 
 ---
