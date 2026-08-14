@@ -323,33 +323,6 @@ SOSC 8 MHz (외부 크리스탈)
 
 </details>
 
-<br>
-
-## 🤝 기여 방법 (Contributing)
-
-이 프로젝트는 학부 텀프로젝트지만, 개선 제안은 언제든 환영합니다.
-
-1. 저장소를 Fork 합니다.
-2. 기능 브랜치를 만듭니다. `git checkout -b feature/fix-buzzer`
-3. 변경 사항을 커밋합니다. `git commit -m "fix: 오답 부저 정지 로직 추가"`
-4. 브랜치에 Push 합니다. `git push origin feature/fix-buzzer`
-5. Pull Request를 생성합니다.
-
-> 💡 하드웨어 검증이 필요한 변경은 PR 본문에 **어떤 보드/배선에서 테스트했는지** 함께 적어 주세요.
-
-<br>
-
-## 📜 라이선스 (License)
-
-이 저장소에는 아직 별도의 `LICENSE` 파일이 없습니다.
-
-- `ADC.c`, `ADC.h`, `clocks_and_modes.c`는 **NXP / Freescale의 예제 코드**를 기반으로 하며, 각 파일 상단의 **BSD-3-Clause** 고지가 그대로 적용됩니다.
-- `main.c`, `lcd1602A.c`는 프로젝트 팀이 작성했습니다.
-
-재배포·재사용을 계획하신다면 NXP 예제 코드의 원 라이선스 조건을 먼저 확인해 주세요.
-
-<br>
-
 ---
 
 <div align="center">
