@@ -273,56 +273,6 @@ SOSC 8 MHz (외부 크리스탈)
 </details>
 
 <br>
-
-## 🐛 알려진 제약 및 개선 과제
-
-현재 코드에 남아 있는 한계입니다. 개선 PR을 환영합니다.
-
-<details>
-<summary><b>타이머 · 인터럽트</b></summary>
-
-<br>
-
-- `LPIT0_Ch1_IRQHandler()`가 `TIF1`이 아닌 **`TIF0`을 클리어**합니다. 채널 1 플래그가 남아 인터럽트가 반복 진입할 수 있습니다.
-- `delay_us()`가 매 호출마다 `LPIT0_init()`을 실행하며 `TMR[1].TVAL`을 재기록해, 키 샘플링 주기가 의도한 2초와 달라질 수 있습니다.
-- `KeyScan()`이 ISR 안에서 `delay_us()`(같은 LPIT 모듈을 재초기화하는 블로킹 함수)를 호출합니다. 지연과 키스캔을 서로 다른 타이머로 분리하는 편이 안전합니다.
-
-</details>
-
-<details>
-<summary><b>동작 로직</b></summary>
-
-<br>
-
-- `srand()` 호출이 없어 `rand()`가 매 부팅마다 **같은 난수**를 반환합니다. LPIT 카운터를 시드로 넣으면 실행마다 암호가 바뀝니다.
-- 오답 시 켠 부저를 **끄는 코드가 없어** 한 번 울리면 계속 울립니다.
-- 정답 후 `k1`만 초기화되고 `k2`, `k5`는 래치로 남습니다. 재시도 시 SW1만 눌러도 해금되므로 세 플래그를 함께 초기화해야 합니다. `sum`도 초기화되지 않습니다.
-
-</details>
-
-<details>
-<summary><b>하드웨어 매핑</b></summary>
-
-<br>
-
-- LCD의 `RS`(PTD15)와 RED LED(PTD15)가 **같은 핀**이라, LED 조작이 LCD 제어선에 영향을 줍니다.
-- `PTC->PCOR = 0x7f` / `0xfff`는 비트 0~11만 지우므로 D(PTC12)·F(PTC15) 세그먼트가 남아 자리 간 잔상이 생길 수 있습니다.
-
-</details>
-
-<details>
-<summary><b>정리되지 않은 코드</b></summary>
-
-<br>
-
-- `ADC.c` / `ADC.h`는 빌드에 포함되지만 호출되지 않습니다.
-- `PORT_init()`에서 FTM2 클럭을 켜지만 FTM2를 사용하지 않습니다.
-- `lcd1602A.h`의 `busycheck()`는 선언만 있고 구현이 없습니다.
-- `lcd1602A.h`가 `uint16_t`를 쓰면서 `stdint.h`를 include하지 않아, include 순서에 의존합니다.
-- `prekey`, `Delaytime`, `num` 등 이전 버전 잔여 변수가 선언만 남아 있습니다.
-
-</details>
-
 ---
 
 <div align="center">
