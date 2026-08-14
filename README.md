@@ -273,7 +273,6 @@ SOSC 8 MHz (외부 크리스탈)
 </details>
 
 <br>
----
 
 <div align="center">
 <sub>Made with ⚡ by 12조 · 고경빈 · 우희연</sub>
